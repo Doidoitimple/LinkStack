@@ -11,9 +11,9 @@ WORKDIR /htdocs
 COPY . /htdocs
 
 RUN sed -i 's|/var/www/html|/htdocs/public|g' /etc/apache2/sites-available/000-default.conf \
- && echo "<Directory /htdocs/public>\nAllowOverride All\nRequire all granted\n</Directory>" >> /etc/apache2/apache2.conf
+ && echo "<Directory /htdocs/public>\n    AllowOverride All\n    Require all granted\n</Directory>" >> /etc/apache2/apache2.conf
 
-RUN chown -R www-data:www-data /htdocs && chmod -R 755 /htdocs
+RUN chown -R www-data:www-data /htdocs/public && chmod -R 755 /htdocs/public
 
 EXPOSE 80
 
